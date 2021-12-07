@@ -6,10 +6,18 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class SqServlet extends HttpServlet{
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException{
-		int num = (int)req.getAttribute("sum");
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
+		
+		HttpSession session = req.getSession();
+		
+//		to remove session attribute
+//		session.removeAttribute("sum");
+//		if we remove attribute we can't use sum attribute
+
+		int num = (int)session.getAttribute("sum");
 		
 		PrintWriter out = res.getWriter();
 		out.println(num*num);
